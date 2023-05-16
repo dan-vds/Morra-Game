@@ -20,34 +20,22 @@ public class Morra {
     Boolean right = false;
     String[] inputArray = new String[2];
     while (!right) {
+      right = true;
       MessageCli.ASK_INPUT.printMessage();
       String input = Utils.scanner.nextLine();
       inputArray = input.split(" ");
-      if (inputArray.length != 2) {
+      String fingers = inputArray[0];
+      String sum = inputArray[1];
+      if (Integer.parseInt(fingers) < 1
+          || Integer.parseInt(fingers) > 5
+          || inputArray.length != 2
+          || Integer.parseInt(sum) < 1
+          || Integer.parseInt(sum) > 10
+          || !(Utils.isInteger(sum))
+          || !(Utils.isInteger(fingers))) {
         MessageCli.INVALID_INPUT.printMessage();
-        continue;
+        right = false;
       }
-      if (Integer.parseInt(inputArray[0]) < 1 || Integer.parseInt(inputArray[0]) > 5) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-      if (Integer.parseInt(inputArray[1]) < 1 || Integer.parseInt(inputArray[1]) > 10) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-      try {
-        Integer.parseInt(inputArray[0]);
-      } catch (NumberFormatException e) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-      try {
-        Integer.parseInt(inputArray[1]);
-      } catch (NumberFormatException e) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-      right = true;
     }
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
   }
