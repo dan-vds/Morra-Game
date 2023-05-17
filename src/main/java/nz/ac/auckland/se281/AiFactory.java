@@ -10,6 +10,8 @@ public class AiFactory {
       return new MediumAi();
     } else if (difficulty == Difficulty.HARD) {
       return new HardAi();
+    } else if (difficulty == Difficulty.MASTER) {
+      return new MasterAi();
     } else {
       return null;
     }
