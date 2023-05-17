@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 public class RandomStrategy implements Strategy {
 
   @Override
-  public int[] playHand() {
+  public int[] playHand(Morra morra) {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = Utils.getRandomNumber(fingers + 1, fingers + 5);
     int[] cPUHand = {fingers, sum};

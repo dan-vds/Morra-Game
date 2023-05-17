@@ -27,7 +27,7 @@ public class Morra {
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
     roundnum++;
 
-    int[] aiHand = ai.getHand();
+    int[] aiHand = ai.getHand(this);
     int aiFingers = aiHand[0];
     int aiSum = aiHand[1];
     Boolean right = false;
