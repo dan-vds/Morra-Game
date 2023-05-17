@@ -8,7 +8,7 @@ public class MediumAi implements Ai {
   @Override
   public int[] getHand(Morra morra) {
     round = morra.getRoundnum();
-    if (round > 3) {
+    if (round <= 3) {
       strategy = new RandomStrategy();
       return strategy.playHand(morra);
     } else {

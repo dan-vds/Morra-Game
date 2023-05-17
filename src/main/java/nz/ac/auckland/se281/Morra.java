@@ -25,7 +25,6 @@ public class Morra {
 
   public void play() {
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
-    roundnum++;
 
     int[] aiHand = ai.getHand(this);
     int aiFingers = aiHand[0];
@@ -65,6 +64,7 @@ public class Morra {
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
+    roundnum++;
   }
 
   public void playCheck() {}

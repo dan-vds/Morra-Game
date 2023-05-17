@@ -12,9 +12,10 @@ public class AverageStrategy implements Strategy {
     for (int finger : previousFingers) {
       totalFingers += finger;
     }
-    int averageFingers = totalFingers / previousFingers.size();
+    double averageFingers = (double) totalFingers / (double) previousFingers.size();
+    averageFingers = Math.round(averageFingers);
     int fingers = Utils.getRandomNumber(1, 5);
-    int sum = fingers + averageFingers;
+    int sum = fingers + (int) averageFingers;
     int[] cPUHand = {fingers, sum};
     return cPUHand;
   }

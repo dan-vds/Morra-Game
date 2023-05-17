@@ -6,6 +6,8 @@ public class AiFactory {
   public static Ai createAi(Difficulty difficulty) {
     if (difficulty == Difficulty.EASY) {
       return new EasyAi();
+    } else if (difficulty == Difficulty.MEDIUM) {
+      return new MediumAi();
     } else {
       return null;
     }
