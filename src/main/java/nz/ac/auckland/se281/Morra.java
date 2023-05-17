@@ -1,5 +1,7 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
@@ -7,6 +9,7 @@ public class Morra {
   private int roundnum = 1;
   private String name;
   private Ai ai;
+  private List<Integer> previousFingers = new ArrayList<>();
 
   public Morra() {}
 
@@ -23,11 +26,13 @@ public class Morra {
   public void play() {
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
     roundnum++;
+
     int[] aiHand = ai.getHand();
     int aiFingers = aiHand[0];
     int aiSum = aiHand[1];
     Boolean right = false;
     String[] inputArray = new String[2];
+
     while (!right) {
       right = true;
       MessageCli.ASK_INPUT.printMessage();
@@ -46,6 +51,8 @@ public class Morra {
         right = false;
       }
     }
+
+    previousFingers.add(Integer.parseInt(inputArray[0]));
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
     MessageCli.PRINT_INFO_HAND.printMessage(
         "Jarvis", Integer.toString(aiFingers), Integer.toString(aiSum));
@@ -63,4 +70,8 @@ public class Morra {
   public void playCheck() {}
 
   public void showStats() {}
+
+  public List<Integer> getPreviousFingers() {
+    return previousFingers;
+  }
 }
