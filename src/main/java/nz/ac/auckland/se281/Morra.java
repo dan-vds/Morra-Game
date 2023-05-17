@@ -49,6 +49,15 @@ public class Morra {
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
     MessageCli.PRINT_INFO_HAND.printMessage(
         "Jarvis", Integer.toString(aiFingers), Integer.toString(aiSum));
+    int playerSum = Integer.parseInt(inputArray[1]);
+    int playerFingers = Integer.parseInt(inputArray[0]);
+    if (playerFingers + aiFingers == playerSum && playerFingers + aiFingers != aiSum) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    } else if (playerFingers + aiFingers != playerSum && playerFingers + aiFingers == aiSum) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    } else {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
   }
 
   public void playCheck() {}
