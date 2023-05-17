@@ -5,9 +5,12 @@ import java.util.List;
 public class AverageStrategy implements Strategy {
   private List<Integer> previousFingers;
 
+  public AverageStrategy(List<Integer> previousFingers) {
+    this.previousFingers = previousFingers;
+  }
+
   @Override
-  public int[] playHand(Morra morra) {
-    previousFingers = morra.getPreviousFingers();
+  public int[] playHand() {
     int totalFingers = 0;
     for (int finger : previousFingers) {
       totalFingers += finger;

@@ -8,9 +8,12 @@ public class TopStrategy implements Strategy {
 
   private List<Integer> previousFingers;
 
+  public TopStrategy(List<Integer> previousFingers) {
+    this.previousFingers = previousFingers;
+  }
+
   @Override
-  public int[] playHand(Morra morra) {
-    previousFingers = morra.getPreviousFingers();
+  public int[] playHand() {
     int oneFinger = Collections.frequency(previousFingers, 1);
     int twoFinger = Collections.frequency(previousFingers, 2);
     int threeFinger = Collections.frequency(previousFingers, 3);

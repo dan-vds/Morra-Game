@@ -1,22 +1,29 @@
 package nz.ac.auckland.se281;
 
-public class MasterAi extends Morra implements Ai {
+import java.util.List;
+
+public class MasterAi implements Ai {
 
   private Strategy strategy;
-  private int round;
+  private int roundNum;
+  private List<Integer> previousFingers;
+
+  public MasterAi(List<Integer> previousFingers, int roundnum) {
+    this.roundNum = roundnum;
+    this.previousFingers = previousFingers;
+  }
 
   @Override
-  public int[] getHand(Morra morra) {
-    round = morra.getRoundnum();
-    if (round <= 3) {
+  public int[] getHand() {
+    if (roundNum <= 3) {
       strategy = new RandomStrategy();
-      return strategy.playHand(morra);
-    } else if (round % 2 == 0) {
-      strategy = new AverageStrategy();
-      return strategy.playHand(morra);
-    } else if (round % 2 != 0) {
-      strategy = new TopStrategy();
-      return strategy.playHand(morra);
+      return strategy.playHand();
+    } else if (roundNum % 2 == 0) {
+      strategy = new AverageStrategy(previousFingers);
+      return strategy.playHand();
+    } else if (roundNum % 2 != 0) {
+      strategy = new TopStrategy(previousFingers);
+      return strategy.playHand();
     }
     return null;
   }

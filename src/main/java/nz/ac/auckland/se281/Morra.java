@@ -6,27 +6,22 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
-  private int roundnum = 1;
+  protected int roundnum = 0;
   private String name;
   private Ai ai;
-  private List<Integer> previousFingers = new ArrayList<>();
+  protected List<Integer> previousFingers = new ArrayList<>();
 
   public Morra() {}
-
-  public int getRoundnum() {
-    return roundnum;
-  }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
-    ai = AiFactory.createAi(difficulty);
+    ai = AiFactory.createAi(difficulty, previousFingers, roundnum);
   }
 
   public void play() {
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
-
-    int[] aiHand = ai.getHand(this);
+    int[] aiHand = ai.getHand();
     int aiFingers = aiHand[0];
     int aiSum = aiHand[1];
     Boolean right = false;
@@ -74,11 +69,15 @@ public class Morra {
     roundnum++;
   }
 
+  // public int getRoundnum() {
+  //   return roundnum;
+  // }
+
   public void playCheck() {}
 
   public void showStats() {}
 
-  public List<Integer> getPreviousFingers() {
-    return previousFingers;
-  }
+  // public List<Integer> getPreviousFingers() {
+  //   return previousFingers;
+  // }
 }
