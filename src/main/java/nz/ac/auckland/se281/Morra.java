@@ -10,6 +10,10 @@ public class Morra {
 
   public Morra() {}
 
+  public int getRoundnum() {
+    return roundnum;
+  }
+
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
@@ -19,6 +23,9 @@ public class Morra {
   public void play() {
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
     roundnum++;
+    int[] aiHand = ai.getHand();
+    int aiFingers = aiHand[0];
+    int aiSum = aiHand[1];
     Boolean right = false;
     String[] inputArray = new String[2];
     while (!right) {
@@ -40,6 +47,8 @@ public class Morra {
       }
     }
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
+    MessageCli.PRINT_INFO_HAND.printMessage(
+        "Jarvis", Integer.toString(aiFingers), Integer.toString(aiSum));
   }
 
   public void playCheck() {}
