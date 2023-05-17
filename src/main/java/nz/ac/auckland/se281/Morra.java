@@ -31,14 +31,21 @@ public class Morra {
     int aiSum = aiHand[1];
     Boolean right = false;
     String[] inputArray = new String[2];
+    String fingers = "0";
+    String sum = "0";
 
     while (!right) {
       right = true;
       MessageCli.ASK_INPUT.printMessage();
       String input = Utils.scanner.nextLine();
       inputArray = input.split(" ");
-      String fingers = inputArray[0];
-      String sum = inputArray[1];
+      if (!inputArray[0].isEmpty() && !inputArray[1].isEmpty()) {
+        fingers = inputArray[0];
+        sum = inputArray[1];
+      } else {
+        MessageCli.INVALID_INPUT.printMessage();
+        right = false;
+      }
       if (Integer.parseInt(fingers) < 1
           || Integer.parseInt(fingers) > 5
           || inputArray.length != 2

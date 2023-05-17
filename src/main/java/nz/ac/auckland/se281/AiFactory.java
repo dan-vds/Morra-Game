@@ -8,6 +8,8 @@ public class AiFactory {
       return new EasyAi();
     } else if (difficulty == Difficulty.MEDIUM) {
       return new MediumAi();
+    } else if (difficulty == Difficulty.HARD) {
+      return new HardAi();
     } else {
       return null;
     }
