@@ -6,12 +6,14 @@ public class Morra {
 
   private int roundnum = 1;
   private String name;
+  private Ai ai;
 
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
+    ai = AiFactory.createAi(difficulty);
   }
 
   public void play() {
