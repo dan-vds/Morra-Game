@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class MediumAi implements Ai {
+public class MediumAi extends Morra implements Ai {
 
   private Strategy strategy;
   private int round;

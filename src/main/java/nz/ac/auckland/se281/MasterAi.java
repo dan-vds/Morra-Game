@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class MasterAi implements Ai {
+public class MasterAi extends Morra implements Ai {
 
   private Strategy strategy;
   private int round;
