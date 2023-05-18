@@ -6,17 +6,17 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
-  protected int roundnum = 0;
   private String name;
   private Ai ai;
-  protected List<Integer> previousFingers = new ArrayList<>();
+  private List<Integer> previousFingers = new ArrayList<>();
+  private int roundnum = 1;
 
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
-    ai = AiFactory.createAi(difficulty, previousFingers, roundnum);
+    ai = AiFactory.createAi(difficulty, previousFingers);
   }
 
   public void play() {

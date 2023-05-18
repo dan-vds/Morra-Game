@@ -5,11 +5,10 @@ import java.util.List;
 public class MediumAi implements Ai {
 
   private Strategy strategy;
-  private int roundNum;
   private List<Integer> previousFingers;
+  private int roundNum = 1;
 
-  public MediumAi(List<Integer> previousFingers, int roundNum) {
-    this.roundNum = roundNum;
+  public MediumAi(List<Integer> previousFingers) {
     this.previousFingers = previousFingers;
   }
 
@@ -17,9 +16,11 @@ public class MediumAi implements Ai {
   public int[] getHand() {
     if (roundNum <= 3) {
       strategy = new RandomStrategy();
+      roundNum++;
       return strategy.playHand();
     } else {
       strategy = new AverageStrategy(previousFingers);
+      roundNum++;
       return strategy.playHand();
     }
   }
