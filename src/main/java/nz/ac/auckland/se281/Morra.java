@@ -6,6 +6,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
+  // Declaring instance variables
   private String name;
   private Ai ai;
   private List<Integer> previousFingers = new ArrayList<>();
@@ -17,8 +18,10 @@ public class Morra {
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+    // Print welcome messge and set name
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
+    // Create new AI and set roundnum to 1, read pointsToWin
     ai = AiFactory.createAi(difficulty, previousFingers);
     roundnum = 1;
     this.pointsToWin = pointsToWin;
@@ -26,52 +29,21 @@ public class Morra {
 
   public void play() {
     if (this.ai == null) {
+      // If ai is null, game has not been started
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
     MessageCli.START_ROUND.printMessage(Integer.toString(roundnum));
+    // Get ai hand and split into fingers and sum
     int[] aiHand = ai.getHand();
     int aiFingers = aiHand[0];
     int aiSum = aiHand[1];
-    Boolean right = false;
-    String[] inputArray = new String[2];
-    String fingers = "0";
-    String sum = "0";
+    Boolean inputValid = false;
 
-    while (!right) {
-      right = true;
+    while (!inputValid) {
       MessageCli.ASK_INPUT.printMessage();
       String input = Utils.scanner.nextLine();
-      try {
-        inputArray = input.split(" ");
-      } catch (Exception e) {
-        MessageCli.INVALID_INPUT.printMessage();
-        right = false;
-        continue;
-      }
-      try {
-        if (!inputArray[0].isEmpty() && !inputArray[1].isEmpty()) {
-          fingers = inputArray[0];
-          sum = inputArray[1];
-        } else {
-          MessageCli.INVALID_INPUT.printMessage();
-          right = false;
-        }
-      } catch (Exception e) {
-        MessageCli.INVALID_INPUT.printMessage();
-        right = false;
-        continue;
-      }
-      if (!(Utils.isInteger(sum))
-          || !(Utils.isInteger(fingers))
-          || Integer.parseInt(fingers) < 1
-          || Integer.parseInt(fingers) > 5
-          || inputArray.length != 2
-          || Integer.parseInt(sum) < 1
-          || Integer.parseInt(sum) > 10) {
-        MessageCli.INVALID_INPUT.printMessage();
-        right = false;
-      }
+      inputValid = playCheck(input);
     }
 
     previousFingers.add(Integer.parseInt(inputArray[0]));
@@ -101,7 +73,40 @@ public class Morra {
     roundnum++;
   }
 
-  public void playCheck() {}
+  public Boolean playCheck(String input) {
+    String[] inputArray = new String[2];
+    String fingers = "0";
+    String sum = "0";
+    try {
+      inputArray = input.split(" ");
+      fingers = inputArray[0];
+      sum = inputArray[1];
+    } catch (Exception e) {
+      MessageCli.INVALID_INPUT.printMessage();
+      return false;
+    }
 
-  public void showStats() {}
+    if (!(Utils.isInteger(sum))
+        || !(Utils.isInteger(fingers))
+        || Integer.parseInt(fingers) < 1
+        || Integer.parseInt(fingers) > 5
+        || inputArray.length != 2
+        || Integer.parseInt(sum) < 1
+        || Integer.parseInt(sum) > 10) {
+      MessageCli.INVALID_INPUT.printMessage();
+      return false;
+    }
+    return true;
+  }
+
+  public void showStats() {
+    if (ai != null) {
+      MessageCli.PRINT_PLAYER_WINS.printMessage(
+          name, Integer.toString(playerPoints), Integer.toString(pointsToWin - playerPoints));
+      MessageCli.PRINT_PLAYER_WINS.printMessage(
+          "Jarvis", Integer.toString(aiPoints), Integer.toString(pointsToWin - aiPoints));
+    } else {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+    }
+  }
 }
