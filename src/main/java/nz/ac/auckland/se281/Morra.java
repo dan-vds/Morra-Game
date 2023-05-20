@@ -39,12 +39,14 @@ public class Morra {
     int aiFingers = aiHand[0];
     int aiSum = aiHand[1];
     Boolean inputValid = false;
+    String input = "";
 
     while (!inputValid) {
       MessageCli.ASK_INPUT.printMessage();
-      String input = Utils.scanner.nextLine();
+      input = Utils.scanner.nextLine();
       inputValid = playCheck(input);
     }
+    String[] inputArray = input.split(" ");
 
     previousFingers.add(Integer.parseInt(inputArray[0]));
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
@@ -85,7 +87,6 @@ public class Morra {
       MessageCli.INVALID_INPUT.printMessage();
       return false;
     }
-
     if (!(Utils.isInteger(sum))
         || !(Utils.isInteger(fingers))
         || Integer.parseInt(fingers) < 1
