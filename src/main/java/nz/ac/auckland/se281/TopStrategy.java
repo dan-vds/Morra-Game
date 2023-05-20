@@ -28,7 +28,7 @@ public class TopStrategy implements Strategy {
     // Generate random number between 1 and 5
     int fingers = Utils.getRandomNumber(1, 5);
     // Return array of fingers and sum
-    int[] cPUHand = {fingers, fingers + index};
-    return cPUHand;
+    int[] cpuHand = {fingers, fingers + index};
+    return cpuHand;
   }
 }

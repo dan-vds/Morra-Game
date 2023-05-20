@@ -7,7 +7,7 @@ public class RandomStrategy implements Strategy {
     // Pick random number of fingers and sum
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = Utils.getRandomNumber(fingers + 1, fingers + 5);
-    int[] cPUHand = {fingers, sum};
-    return cPUHand;
+    int[] cpuHand = {fingers, sum};
+    return cpuHand;
   }
 }

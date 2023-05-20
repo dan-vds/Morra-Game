@@ -24,7 +24,7 @@ public class AverageStrategy implements Strategy {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = fingers + (int) averageFingers;
     // Returning array of fingers and sum
-    int[] cPUHand = {fingers, sum};
-    return cPUHand;
+    int[] cpuHand = {fingers, sum};
+    return cpuHand;
   }
 }

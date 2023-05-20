@@ -87,9 +87,9 @@ public class Morra {
 
   public Boolean playCheck(String input) {
     // defining variables to be used when checking input valid
-    String[] inputArray = new String[2];
-    String fingers = "0";
-    String sum = "0";
+    String[] inputArray;
+    String fingers;
+    String sum;
 
     // Try to split input into fingers and sum, if not possible, input is invalid
     try {
