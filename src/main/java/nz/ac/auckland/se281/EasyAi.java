@@ -6,6 +6,7 @@ public class EasyAi implements Ai {
 
   @Override
   public int[] getHand() {
+    // return a random hand
     return strategy.playHand();
   }
 }

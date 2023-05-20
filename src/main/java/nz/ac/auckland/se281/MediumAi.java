@@ -14,6 +14,7 @@ public class MediumAi implements Ai {
 
   @Override
   public int[] getHand() {
+    // Check round number and return a hand using strategy based on the round number
     if (roundNum <= 3) {
       strategy = new RandomStrategy();
       roundNum++;

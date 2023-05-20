@@ -41,19 +41,27 @@ public class Morra {
     Boolean inputValid = false;
     String input = "";
 
+    // Loop to keep asking for input until valid
     while (!inputValid) {
       MessageCli.ASK_INPUT.printMessage();
       input = Utils.scanner.nextLine();
       inputValid = playCheck(input);
     }
+
+    // Split into fingers and sum
     String[] inputArray = input.split(" ");
 
+    // Add player fingers to previousFingers
     previousFingers.add(Integer.parseInt(inputArray[0]));
+
+    // print both player's hands
     MessageCli.PRINT_INFO_HAND.printMessage(name, inputArray[0], inputArray[1]);
     MessageCli.PRINT_INFO_HAND.printMessage(
         "Jarvis", Integer.toString(aiFingers), Integer.toString(aiSum));
     int playerSum = Integer.parseInt(inputArray[1]);
     int playerFingers = Integer.parseInt(inputArray[0]);
+
+    // Check who won
     if (playerFingers + aiFingers == playerSum && playerFingers + aiFingers != aiSum) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
       playerPoints++;
@@ -63,6 +71,8 @@ public class Morra {
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
+
+    // Check if game is over
     if (playerPoints == pointsToWin) {
       MessageCli.END_GAME.printMessage(name, Integer.toString(roundnum));
       ai = null;
@@ -76,9 +86,12 @@ public class Morra {
   }
 
   public Boolean playCheck(String input) {
+    // defining variables to be used when checking input valid
     String[] inputArray = new String[2];
     String fingers = "0";
     String sum = "0";
+
+    // Try to split input into fingers and sum, if not possible, input is invalid
     try {
       inputArray = input.split(" ");
       fingers = inputArray[0];
@@ -87,6 +100,7 @@ public class Morra {
       MessageCli.INVALID_INPUT.printMessage();
       return false;
     }
+    // Check if input is within range and of right length
     if (!(Utils.isInteger(sum))
         || !(Utils.isInteger(fingers))
         || Integer.parseInt(fingers) < 1
@@ -97,16 +111,19 @@ public class Morra {
       MessageCli.INVALID_INPUT.printMessage();
       return false;
     }
+    // return true if input is valid
     return true;
   }
 
   public void showStats() {
+    // Print stats if game is in progress
     if (ai != null) {
       MessageCli.PRINT_PLAYER_WINS.printMessage(
           name, Integer.toString(playerPoints), Integer.toString(pointsToWin - playerPoints));
       MessageCli.PRINT_PLAYER_WINS.printMessage(
           "Jarvis", Integer.toString(aiPoints), Integer.toString(pointsToWin - aiPoints));
     } else {
+      // If game is not in progress, print error message
       MessageCli.GAME_NOT_STARTED.printMessage();
     }
   }
