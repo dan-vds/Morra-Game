@@ -21,6 +21,7 @@ public class Morra {
     // Print welcome messge and set name
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     name = options[0];
+    previousFingers.clear();
     // Create new AI and set roundnum to 1, read pointsToWin
     ai = AiFactory.createAi(difficulty, previousFingers);
     roundnum = 1;
