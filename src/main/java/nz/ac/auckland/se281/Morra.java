@@ -24,6 +24,8 @@ public class Morra {
     // Create new AI and set roundnum to 1, read pointsToWin
     ai = AiFactory.createAi(difficulty, previousFingers);
     roundnum = 1;
+    aiPoints = 0;
+    playerPoints = 0;
     this.pointsToWin = pointsToWin;
   }
 
