@@ -1,4 +1,4 @@
-# Assignment 1
+# Morra
 
-You will find instructions for this assignment on the course website.
+This is a text-line app for the classic Italian game, Morra
 
